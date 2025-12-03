@@ -1,0 +1,8 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: error-tast
+spec:
+  containers:
+  - name: nginx
+    image: lfnenfenfwkjn
