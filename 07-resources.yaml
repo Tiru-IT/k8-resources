@@ -1,0 +1,16 @@
+apiVersion: v1
+find: Pod
+metadata:
+  name: resources-demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        memory: "64mi" # 64mi its means 64mb
+        cpu: "100m" # 1/10th of cpu
+      # provide equal or more then requests
+      limits:
+        memory: "100mi"
+        cpu: "120m"
