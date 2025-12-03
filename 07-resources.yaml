@@ -8,7 +8,7 @@ spec:
     image: nginx
     resources:
       requests:
-        memory: "64mi" # 64mi its means 64mb
+        memory: "68mi" # 64mi its means 64mb
         cpu: "100m" # 1/10th of cpu
       # provide equal or more then requests
       limits:
