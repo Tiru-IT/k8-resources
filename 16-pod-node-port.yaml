@@ -1,0 +1,14 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: service-np-demo
+  # these labels are uesd to register thos pod with service
+  labels:
+    project: roboshop
+    component: frontend
+    environment: dev
+    purpose: node-prot
+spec:
+  containers:
+  - name: nginx
+    image: nginx
