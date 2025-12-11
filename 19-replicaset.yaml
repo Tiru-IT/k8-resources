@@ -13,7 +13,7 @@ spec:
     matchLabels:
       purpose: re-demo
       project: roboshop
-  tamplate:
+  template:
     metadata:
     # pod definition
       labels:
