@@ -11,11 +11,11 @@ spec:
   selector:
   # these are used to select pods
     matchLabels:
-      purpose: re-demo
+      purpose: rs-demo
       project: roboshop
+  # pod definition
   template:
     metadata:
-    # pod definition
       labels:
         purpose: rs-demo
         project: roboshop
