@@ -41,6 +41,9 @@ spec:
     volumeMounts:
     - name: nginx-html
       mountPath: /usr/shar/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1b  # for select az in pode to see the node labes kubectl get nodes --show-labels
+
   volumes:
   - name: nginx-html
     persistentVolumeClaim:
