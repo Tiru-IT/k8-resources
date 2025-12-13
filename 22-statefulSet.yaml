@@ -1,0 +1,71 @@
+# headless ap
+apiVersion: v1 
+kind: Service
+metadata:
+  name: nginx-headless
+  labels:
+    purpose: statefull-demo
+    project: roboshop
+spec:
+   # if a service clusterIP then it is called as headless service
+  clusterIP: None
+  selector:
+    purpose: statefull-demo
+    project: roboshop
+  ports:
+  - port: 80
+    name: web
+---
+# Service
+apiVersion: v1 
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    purpose: statefull-demo
+    project: roboshop
+spec:
+  selector:
+    purpose: statefull-demo
+    project: roboshop
+  ports:
+  - port: 80
+    name: web
+---
+# statefullSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  serviceName: "nginx-headless"  # this should be head less service name
+  replicas: 3
+  selector:
+    matchLabels:
+      purpose: statefull-demo
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        purpose: statefull-demo
+        project: roboshop
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "roboshop-ebs"
+      resources:
+        requests:
+          storage: 1Gi
